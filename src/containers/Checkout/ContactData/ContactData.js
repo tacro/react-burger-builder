@@ -9,11 +9,57 @@ import Input from '../../../components/UI/Input/Input';
 
 class ContactData extends Component {
     state = {
-      name: '',
-      email: '',
-      address: {
-          street: '',
-          postalCode: ''
+      orderForm: {
+          name: {
+            elementType: 'input',
+            elementConfig: {
+              type: 'text',
+              placeholder: 'your name',
+            },
+            value: ''
+          },
+          street: {
+            elementType: 'input',
+            elementConfig: {
+              type: 'text',
+              placeholder: 'Street',
+            },
+            value: ''
+          },
+          zipcode: {
+            elementType: 'input',
+            elementConfig: {
+              type: 'text',
+              placeholder: 'ZIP code',
+            },
+            value: ''
+          },
+          country: {
+            elementType: 'input',
+            elementConfig: {
+              type: 'text',
+              placeholder: 'Country',
+            },
+            value: ''
+          },
+          email: {
+            elementType: 'input',
+            elementConfig: {
+              type: 'email',
+              placeholder: 'your e-mail',
+            },
+            value: ''
+          },
+          deliveryMethod: {
+            elementType: 'select',
+            elementConfig: {
+              options: [
+                {value: 'fastest', displayValue: 'Fastest'},
+                {value: 'cheapest', displayValue: 'Cheapest'},
+              ]
+            },
+            value: ''
+          }
       },
       loading: false
     }
@@ -25,16 +71,7 @@ class ContactData extends Component {
       const order = {
         ingredients: this.props.ingredients,
         price: this.props.price,
-        customer: {
-          name: 'Tacro',
-          address: {
-            street: 'testst',
-            zipcode: '12345',
-            country: 'Moo'
-          },
-          email: 'test@test.com'
-        },
-        deliveryMethod: 'fastest'
+
       }
       axios.post('/orders.json', order)
         .then(response => {
